@@ -2,12 +2,40 @@ local function getColorByKey(wezterm, window)
 	return wezterm.color.get_builtin_schemes()[window:effective_config().color_scheme]
 end
 
-local vin_config_colorscheme = "Black Atom — JPN ∷ Koyo Yoru"
-
 ---[Default Key Assignments - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/default-keys.html)
 ---[Color Schemes - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/colorschemes/index.html)
 ---@diagnostic disable-next-line: unused-local
 return function(wezterm, config)
+	local function get_appearance()
+		if wezterm.gui then
+			return wezterm.gui.get_appearance()
+		end
+		return "Dark"
+	end
+
+	local function load_current_schemes()
+		local schemes_file = wezterm.config_dir .. "/.current_schemes.lua"
+		local ok, schemes = pcall(dofile, schemes_file)
+		if ok and schemes then
+			return schemes
+		else
+			-- Fallback to defaults if file doesn't exist or has errors
+			return {
+				light = "Black Atom — JPN ∷ Koyo Hiru",
+				dark = "Black Atom — JPN ∷ Koyo Yoru"
+			}
+		end
+	end
+
+	local function scheme_for_appearance(appearance)
+		local schemes = load_current_schemes()
+		if appearance:find("Dark") then
+			return schemes.dark
+		else
+			return schemes.light
+		end
+	end
+
 	-- Store the current colorscheme in a global variable
 	wezterm.on("window-config-reloaded", function(window, pane)
 		local effective_config = window:effective_config()
@@ -26,7 +54,7 @@ return function(wezterm, config)
 		wezterm.GLOBAL.current_colors = colors
 	end)
 
-	config.color_scheme = vin_config_colorscheme
+	config.color_scheme = scheme_for_appearance(get_appearance())
 	-- config.colors = {
 	-- 	background = "#000000",
 	-- 	tab_bar = {
