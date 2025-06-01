@@ -1,5 +1,6 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 local mux = wezterm.mux
+local workspace_config = require("workspace-config")
 
 local M = {}
 
@@ -27,70 +28,88 @@ local function switch_or_create_workspace(workspace_name, create_function)
 end
 
 function M.private_notes_workspace()
-	local home_path = os.getenv("HOME")
-	local notes_path = home_path .. "/repos/nikbrunner/notes/"
-	local workspace_name = "private-notes"
+	local config = workspace_config.workspaces.private_notes
+	local workspace_name = config.name
 
 	local function create_workspace()
-		local tab_1, pane_1, window_1 = mux.spawn_window({
-			workspace = workspace_name,
-			cwd = notes_path,
-		})
-		tab_1:set_title("Private Notes")
-		pane_1:send_text("nvim .\n")
+		for i, tab_config in ipairs(config.tabs) do
+			local tab, pane, window
+			if i == 1 then
+				tab, pane, window = mux.spawn_window({
+					workspace = workspace_name,
+					cwd = tab_config.cwd,
+				})
+			else
+				tab, pane = window:spawn_tab({
+					cwd = tab_config.cwd,
+				})
+			end
+			tab:set_title(tab_config.title)
+			if tab_config.command then
+				pane:send_text(tab_config.command)
+			end
+		end
 	end
 
 	switch_or_create_workspace(workspace_name, create_workspace)
 end
 
 function M.work_notes_workspace()
-	local home_path = os.getenv("HOME")
-	local work_notes_path = home_path .. "/repos/nikbrunner/dcd-notes/"
-	local workspace_name = "work-notes"
+	local config = workspace_config.workspaces.work_notes
+	local workspace_name = config.name
 
 	local function create_workspace()
-		local tab_1, pane_1, window_1 = mux.spawn_window({
-			workspace = workspace_name,
-			cwd = work_notes_path,
-		})
-		tab_1:set_title("Work Notes")
-		pane_1:send_text("nvim .\n")
+		for i, tab_config in ipairs(config.tabs) do
+			local tab, pane, window
+			if i == 1 then
+				tab, pane, window = mux.spawn_window({
+					workspace = workspace_name,
+					cwd = tab_config.cwd,
+				})
+			else
+				tab, pane = window:spawn_tab({
+					cwd = tab_config.cwd,
+				})
+			end
+			tab:set_title(tab_config.title)
+			if tab_config.command then
+				pane:send_text(tab_config.command)
+			end
+		end
 	end
 
 	switch_or_create_workspace(workspace_name, create_workspace)
 end
 
 function M.default_workspace()
-	local workspace_name = "default"
+	local config = workspace_config.workspaces.default
+	local workspace_name = config.name
 
 	local function create_workspace()
-		local home_path = os.getenv("HOME")
-		local config_path = home_path .. "/.config/"
+		local window
+		for i, tab_config in ipairs(config.tabs) do
+			local tab, pane
+			if i == 1 then
+				local spawn_options = {
+					workspace = workspace_name,
+					cwd = tab_config.cwd,
+				}
+				if config.position then
+					spawn_options.position = config.position
+				end
+				tab, pane, window = mux.spawn_window(spawn_options)
+			else
+				tab, pane = window:spawn_tab({
+					cwd = tab_config.cwd,
+				})
+			end
+			tab:set_title(tab_config.title)
+			if tab_config.command then
+				pane:send_text(tab_config.command)
+			end
+		end
 
-		local tab_1, pane_1, window_1 = mux.spawn_window({
-			workspace = workspace_name,
-			cwd = home_path,
-			position = {
-				origin = "MainScreen",
-				x = 200,
-				y = 300,
-			},
-		})
-		tab_1:set_title("Home")
-
-		local tab_2, pane_2, window_2 = window_1:spawn_tab({
-			cwd = config_path .. "nvim",
-		})
-		tab_2:set_title("Neovim")
-		pane_2:send_text("nvim .\n")
-
-		local tab_3, pane_3, window_3 = window_1:spawn_tab({
-			cwd = config_path .. "wezterm",
-		})
-		tab_3:set_title("Wezterm")
-		pane_3:send_text("nvim .\n")
-
-		local gui_window = window_1:gui_window()
+		local gui_window = window:gui_window()
 		local active_pane = gui_window:active_pane()
 		gui_window:perform_action(wezterm.action.ActivateTab(0), active_pane)
 	end
