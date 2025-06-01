@@ -29,8 +29,11 @@ return function(wezterm, config)
 			title = basename(tab.active_pane.foreground_process_name)
 		end
 
+		-- Add 1 to make it 1-indexed for display
+		local index = tab.tab_index + 1
+
 		return {
-			{ Text = " " .. title .. " " },
+			{ Text = " " .. index .. ": " .. title .. " " },
 		}
 	end)
 end

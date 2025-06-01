@@ -31,7 +31,8 @@ local function get_all_tabs()
 			end
 
 			-- Create label with workspace and window context
-			local label = string.format("[%s] %s%s", workspace, title, pane_info)
+			-- tab_idx is 1-indexed already from the loop
+			local label = string.format("[%s] %d: %s%s", workspace, tab_idx, title, pane_info)
 
 			table.insert(tabs, {
 				id = string.format("%d:%d:%d", window_id, tab_id, tab_idx),
