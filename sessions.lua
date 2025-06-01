@@ -1,5 +1,4 @@
----@diagnostic disable: unused-local
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 local mux = wezterm.mux
 
 local M = {}
@@ -76,6 +75,7 @@ function M.private_notes()
 			cwd = notes_path,
 		})
 		tab_1:set_title("Private Notes")
+		pane_1:send_text("nvim .\n")
 		mux.set_active_workspace(workspace_name)
 	end
 
@@ -93,6 +93,7 @@ function M.work_notes()
 			cwd = work_notes_path,
 		})
 		tab_1:set_title("Work Notes")
+		pane_1:send_text("nvim .\n")
 		mux.set_active_workspace(workspace_name)
 	end
 
