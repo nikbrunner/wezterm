@@ -8,8 +8,6 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
----@diagnostic disable-next-line: unused-local
-local is_mac = wezterm.target_triple:find("darwin")
 
 config.set_environment_variables = {
 	EDITOR = "nvim",

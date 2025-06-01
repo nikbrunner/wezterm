@@ -2,7 +2,7 @@
 local Sessionizer = require("sessionizer")
 local Util = require("util")
 local Workspace = require("workspace")
-local Sessions = require("sessions")
+local sessions = require("sessions")
 local FontUtil = require("font-util")
 
 return function(wezterm, config)
@@ -107,35 +107,34 @@ return function(wezterm, config)
 			key = "0",
 			mods = "CMD",
 			action = wezterm.action_callback(function(window, pane)
-				Sessions.default_workspace()
+				sessions.default_workspace()
 			end),
 		},
 		{
 			key = "1",
 			mods = "CMD",
 			action = wezterm.action_callback(function(window, pane)
-				Sessions.private_notes()
+				sessions.private_notes_workspace()
 			end),
 		},
 		{
 			key = "2",
 			mods = "CMD",
 			action = wezterm.action_callback(function(window, pane)
-				Sessions.work_notes()
+				sessions.work_notes_workspace()
 			end),
 		},
 		
 		-- Dynamic workspace slots
-		{ key = "3", mods = "CMD", action = Sessions.dynamic_workspace_action(3) },
-		{ key = "4", mods = "CMD", action = Sessions.dynamic_workspace_action(4) },
-		{ key = "5", mods = "CMD", action = Sessions.dynamic_workspace_action(5) },
-		{ key = "6", mods = "CMD", action = Sessions.dynamic_workspace_action(6) },
-		{ key = "7", mods = "CMD", action = Sessions.dynamic_workspace_action(7) },
-		{ key = "8", mods = "CMD", action = Sessions.dynamic_workspace_action(8) },
-		{ key = "9", mods = "CMD", action = Sessions.dynamic_workspace_action(9) },
+		{ key = "3", mods = "CMD", action = sessions.dynamic_workspace_action(3) },
+		{ key = "4", mods = "CMD", action = sessions.dynamic_workspace_action(4) },
+		{ key = "5", mods = "CMD", action = sessions.dynamic_workspace_action(5) },
+		{ key = "6", mods = "CMD", action = sessions.dynamic_workspace_action(6) },
+		{ key = "7", mods = "CMD", action = sessions.dynamic_workspace_action(7) },
+		{ key = "8", mods = "CMD", action = sessions.dynamic_workspace_action(8) },
+		{ key = "9", mods = "CMD", action = sessions.dynamic_workspace_action(9) },
 
 		-- Projects & Workspaces
-		-- { key = "s", mods = "ALT", action = action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
 		{ key = "s", mods = "ALT", action = action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
 		{
 			key = "s",

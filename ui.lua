@@ -1,10 +1,5 @@
-local function getColorByKey(wezterm, window)
-	return wezterm.color.get_builtin_schemes()[window:effective_config().color_scheme]
-end
-
 ---[Default Key Assignments - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/default-keys.html)
 ---[Color Schemes - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/colorschemes/index.html)
----@diagnostic disable-next-line: unused-local
 return function(wezterm, config)
 	local function get_appearance()
 		if wezterm.gui then

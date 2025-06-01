@@ -38,7 +38,6 @@ function M.private_notes_workspace()
 		})
 		tab_1:set_title("Private Notes")
 		pane_1:send_text("nvim .\n")
-		mux.set_active_workspace(workspace_name)
 	end
 
 	switch_or_create_workspace(workspace_name, create_workspace)
@@ -56,7 +55,6 @@ function M.work_notes_workspace()
 		})
 		tab_1:set_title("Work Notes")
 		pane_1:send_text("nvim .\n")
-		mux.set_active_workspace(workspace_name)
 	end
 
 	switch_or_create_workspace(workspace_name, create_workspace)
@@ -91,8 +89,6 @@ function M.default_workspace()
 		})
 		tab_3:set_title("Wezterm")
 		pane_3:send_text("nvim .\n")
-
-		mux.set_active_workspace(workspace_name)
 
 		local gui_window = window_1:gui_window()
 		local active_pane = gui_window:active_pane()
