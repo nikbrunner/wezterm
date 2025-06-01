@@ -26,8 +26,8 @@ require("keymaps")(wezterm, config)
 
 wezterm.on("gui-startup", function()
 	sessions.default_workspace()
-	sessions.private_notes()
-	sessions.work_notes()
+	sessions.private_notes_workspace()
+	sessions.work_notes_workspace()
 	mux.set_active_workspace("default")
 end)
 
