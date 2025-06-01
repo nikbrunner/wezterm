@@ -68,9 +68,46 @@ return function(wezterm, config)
 		{ key = "Enter", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "Enter", mods = "CMD", action = wezterm.action.ToggleFullScreen },
 
+		-- Leader key actions
 		{ key = "f", mods = "LEADER", action = FontUtil.selector_action() },
 
+		-- Direct workspace access (universal)
+		{
+			key = "0",
+			mods = "LEADER",
+			action = wezterm.action_callback(function()
+				sessions.default_workspace()
+			end),
+		},
+		{
+			key = "1",
+			mods = "LEADER",
+			action = wezterm.action_callback(function()
+				sessions.private_notes_workspace()
+			end),
+		},
+		{
+			key = "2",
+			mods = "LEADER",
+			action = wezterm.action_callback(function()
+				sessions.work_notes_workspace()
+			end),
+		},
+		{ key = "3", mods = "LEADER", action = sessions.dynamic_workspace_action(3) },
+		{ key = "4", mods = "LEADER", action = sessions.dynamic_workspace_action(4) },
+		{ key = "5", mods = "LEADER", action = sessions.dynamic_workspace_action(5) },
+		{ key = "6", mods = "LEADER", action = sessions.dynamic_workspace_action(6) },
+		{ key = "7", mods = "LEADER", action = sessions.dynamic_workspace_action(7) },
+		{ key = "8", mods = "LEADER", action = sessions.dynamic_workspace_action(8) },
+		{ key = "9", mods = "LEADER", action = sessions.dynamic_workspace_action(9) },
+
+		-- Additional Leader actions
+		{ key = "r", mods = "LEADER", action = action.ReloadConfiguration },
+		{ key = "?", mods = "LEADER", action = action.ShowLauncherArgs({ flags = "FUZZY|KEY_ASSIGNMENTS" }) },
+
+		-- System Level
 		{ key = ";", mods = "CMD", action = action.ActivateCommandPalette },
+		{ key = "f", mods = "CMD", action = action.Search({ CaseSensitiveString = "" }) },
 		{ key = "Escape", mods = "ALT", action = action.ActivateCopyMode },
 		{ key = "d", mods = "ALT", action = action.ShowDebugOverlay },
 		{
@@ -102,30 +139,25 @@ return function(wezterm, config)
 			end),
 		},
 
-		-- Predefined Workspaces
-		{
-			key = "0",
-			mods = "CMD",
-			action = wezterm.action_callback(function(window, pane)
-				sessions.default_workspace()
-			end),
-		},
+		-- Workspace Management
+		-- macOS direct access (optional enhancement)
+		{ key = "0", mods = "CMD", action = wezterm.action_callback(function()
+			sessions.default_workspace()
+		end) },
 		{
 			key = "1",
 			mods = "CMD",
-			action = wezterm.action_callback(function(window, pane)
+			action = wezterm.action_callback(function()
 				sessions.private_notes_workspace()
 			end),
 		},
 		{
 			key = "2",
 			mods = "CMD",
-			action = wezterm.action_callback(function(window, pane)
+			action = wezterm.action_callback(function()
 				sessions.work_notes_workspace()
 			end),
 		},
-		
-		-- Dynamic workspace slots
 		{ key = "3", mods = "CMD", action = sessions.dynamic_workspace_action(3) },
 		{ key = "4", mods = "CMD", action = sessions.dynamic_workspace_action(4) },
 		{ key = "5", mods = "CMD", action = sessions.dynamic_workspace_action(5) },
@@ -183,12 +215,7 @@ return function(wezterm, config)
 			}),
 		},
 
-		{ key = "l", mods = "LEADER", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-		{ key = "j", mods = "LEADER", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
-
-		{ key = ",", mods = "CMD", action = action.MoveTabRelative(-1) },
-		{ key = ".", mods = "CMD", action = action.MoveTabRelative(1) },
-
+		-- Tab Management
 		{ key = "1", mods = "ALT", action = action.ActivateTab(0) },
 		{ key = "2", mods = "ALT", action = action.ActivateTab(1) },
 		{ key = "3", mods = "ALT", action = action.ActivateTab(2) },
@@ -198,22 +225,34 @@ return function(wezterm, config)
 		{ key = "7", mods = "ALT", action = action.ActivateTab(6) },
 		{ key = "8", mods = "ALT", action = action.ActivateTab(7) },
 		{ key = "9", mods = "ALT", action = action.ActivateTab(8) },
-
 		{ key = "h", mods = "ALT", action = action({ ActivateTabRelative = -1 }) },
 		{ key = "l", mods = "ALT", action = action({ ActivateTabRelative = 1 }) },
+		{ key = "c", mods = "ALT", action = action.SpawnTab("CurrentPaneDomain") },
+		{ key = "x", mods = "ALT", action = action.CloseCurrentTab({ confirm = true }) },
+		{ key = ",", mods = "ALT", action = action.MoveTabRelative(-1) },
+		{ key = ".", mods = "ALT", action = action.MoveTabRelative(1) },
 
+		-- Workspace Navigation
+		{ key = "j", mods = "ALT", action = action.SwitchWorkspaceRelative(-1) },
+		{ key = "k", mods = "ALT", action = action.SwitchWorkspaceRelative(1) },
+
+		-- Application Integration (CTRL - vim navigation)
 		{ key = "h", mods = "CTRL", action = action.EmitEvent("ActivatePaneDirection-left") },
 		{ key = "j", mods = "CTRL", action = action.EmitEvent("ActivatePaneDirection-down") },
 		{ key = "k", mods = "CTRL", action = action.EmitEvent("ActivatePaneDirection-up") },
 		{ key = "l", mods = "CTRL", action = action.EmitEvent("ActivatePaneDirection-right") },
 
-		{ key = "z", mods = "ALT", action = action.TogglePaneZoomState },
-		{ key = "c", mods = "ALT", action = action.SpawnTab("CurrentPaneDomain") },
+		-- Pane Management (Splits)
+		{ key = "l", mods = "ALT|SHIFT", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+		{ key = "j", mods = "ALT|SHIFT", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+		{ key = "z", mods = "ALT|SHIFT", action = action.TogglePaneZoomState },
+		{ key = "x", mods = "ALT|SHIFT", action = action.CloseCurrentPane({ confirm = true }) },
 
-		{ key = "h", mods = "ALT|SHIFT", action = action.AdjustPaneSize({ "Left", 10 }) },
-		{ key = "j", mods = "ALT|SHIFT", action = action.AdjustPaneSize({ "Down", 10 }) },
-		{ key = "k", mods = "ALT|SHIFT", action = action.AdjustPaneSize({ "Up", 10 }) },
-		{ key = "l", mods = "ALT|SHIFT", action = action.AdjustPaneSize({ "Right", 10 }) },
+		-- Pane Resizing
+		{ key = "h", mods = "ALT|SHIFT|CTRL", action = action.AdjustPaneSize({ "Left", 10 }) },
+		{ key = "j", mods = "ALT|SHIFT|CTRL", action = action.AdjustPaneSize({ "Down", 10 }) },
+		{ key = "k", mods = "ALT|SHIFT|CTRL", action = action.AdjustPaneSize({ "Up", 10 }) },
+		{ key = "l", mods = "ALT|SHIFT|CTRL", action = action.AdjustPaneSize({ "Right", 10 }) },
 
 		-- Emoji Picker
 		{
