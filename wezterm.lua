@@ -24,7 +24,9 @@ require("ui")(wezterm, config)
 require("keymaps")(wezterm, config)
 
 wezterm.on("gui-startup", function()
-	-- sessions.default()
+	sessions.default_workspace()
+	sessions.private_notes()
+	sessions.work_notes()
 end)
 
 return config

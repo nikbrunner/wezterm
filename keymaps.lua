@@ -2,6 +2,7 @@
 local Sessionizer = require("sessionizer")
 local Util = require("util")
 local Workspace = require("workspace")
+local Sessions = require("sessions")
 local FontUtil = require("font-util")
 
 return function(wezterm, config)
@@ -98,6 +99,29 @@ return function(wezterm, config)
 						width = active_screen.width,
 					},
 				})
+			end),
+		},
+
+		-- Predefined Workspaces
+		{
+			key = "0",
+			mods = "CMD",
+			action = wezterm.action_callback(function(window, pane)
+				Sessions.default_workspace()
+			end),
+		},
+		{
+			key = "1",
+			mods = "CMD",
+			action = wezterm.action_callback(function(window, pane)
+				Sessions.private_notes()
+			end),
+		},
+		{
+			key = "2",
+			mods = "CMD",
+			action = wezterm.action_callback(function(window, pane)
+				Sessions.work_notes()
 			end),
 		},
 

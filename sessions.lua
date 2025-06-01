@@ -4,6 +4,24 @@ local mux = wezterm.mux
 
 local M = {}
 
+local function workspace_exists(workspace_name)
+	local workspaces = mux.get_workspace_names()
+	for _, name in ipairs(workspaces) do
+		if name == workspace_name then
+			return true
+		end
+	end
+	return false
+end
+
+local function switch_or_create_workspace(workspace_name, create_function)
+	if workspace_exists(workspace_name) then
+		mux.set_active_workspace(workspace_name)
+	else
+		create_function()
+	end
+end
+
 function M.default()
 	local home_path = os.getenv("HOME")
 	local config_path = home_path .. "/.config/"
@@ -40,6 +58,55 @@ function M.default()
 	gui_window:perform_action(wezterm.action.ActivateTab(0), active_pane)
 
 	-- gui_window:toggle_fullscreen()
+end
+
+function M.private_notes()
+	local home_path = os.getenv("HOME")
+	local notes_path = home_path .. "/repos/nikbrunner/notes/"
+	local workspace_name = "private-notes"
+
+	local function create_workspace()
+		local tab_1, pane_1, window_1 = mux.spawn_window({
+			workspace = workspace_name,
+			cwd = notes_path,
+		})
+		tab_1:set_title("Private Notes")
+		mux.set_active_workspace(workspace_name)
+	end
+	
+	switch_or_create_workspace(workspace_name, create_workspace)
+end
+
+function M.work_notes()
+	local home_path = os.getenv("HOME")
+	local work_notes_path = home_path .. "/repos/nikbrunner/dcd-notes/"
+	local workspace_name = "work-notes"
+
+	local function create_workspace()
+		local tab_1, pane_1, window_1 = mux.spawn_window({
+			workspace = workspace_name,
+			cwd = work_notes_path,
+		})
+		tab_1:set_title("Work Notes")
+		mux.set_active_workspace(workspace_name)
+	end
+	
+	switch_or_create_workspace(workspace_name, create_workspace)
+end
+
+function M.default_workspace()
+	local workspace_name = "default"
+	
+	local function create_workspace()
+		local tab_1, pane_1, window_1 = mux.spawn_window({
+			workspace = workspace_name,
+			cwd = os.getenv("HOME"),
+		})
+		tab_1:set_title("Scratchpad")
+		mux.set_active_workspace(workspace_name)
+	end
+	
+	switch_or_create_workspace(workspace_name, create_workspace)
 end
 
 return M
