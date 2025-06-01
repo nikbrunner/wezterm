@@ -1,4 +1,5 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
+local mux = wezterm.mux
 local sessions = require("sessions")
 
 local config = {}
@@ -27,6 +28,7 @@ wezterm.on("gui-startup", function()
 	sessions.default_workspace()
 	sessions.private_notes()
 	sessions.work_notes()
+	mux.set_active_workspace("default")
 end)
 
 return config

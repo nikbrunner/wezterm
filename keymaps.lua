@@ -124,6 +124,15 @@ return function(wezterm, config)
 				Sessions.work_notes()
 			end),
 		},
+		
+		-- Dynamic workspace slots
+		{ key = "3", mods = "CMD", action = Sessions.dynamic_workspace_action(3) },
+		{ key = "4", mods = "CMD", action = Sessions.dynamic_workspace_action(4) },
+		{ key = "5", mods = "CMD", action = Sessions.dynamic_workspace_action(5) },
+		{ key = "6", mods = "CMD", action = Sessions.dynamic_workspace_action(6) },
+		{ key = "7", mods = "CMD", action = Sessions.dynamic_workspace_action(7) },
+		{ key = "8", mods = "CMD", action = Sessions.dynamic_workspace_action(8) },
+		{ key = "9", mods = "CMD", action = Sessions.dynamic_workspace_action(9) },
 
 		-- Projects & Workspaces
 		-- { key = "s", mods = "ALT", action = action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },

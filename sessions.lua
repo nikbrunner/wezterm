@@ -4,6 +4,11 @@ local mux = wezterm.mux
 
 local M = {}
 
+-- Initialize global workspace tracking
+if not wezterm.GLOBAL.dynamic_workspaces then
+	wezterm.GLOBAL.dynamic_workspaces = {}
+end
+
 local function workspace_exists(workspace_name)
 	local workspaces = mux.get_workspace_names()
 	for _, name in ipairs(workspaces) do
@@ -73,7 +78,7 @@ function M.private_notes()
 		tab_1:set_title("Private Notes")
 		mux.set_active_workspace(workspace_name)
 	end
-	
+
 	switch_or_create_workspace(workspace_name, create_workspace)
 end
 
@@ -90,13 +95,13 @@ function M.work_notes()
 		tab_1:set_title("Work Notes")
 		mux.set_active_workspace(workspace_name)
 	end
-	
+
 	switch_or_create_workspace(workspace_name, create_workspace)
 end
 
 function M.default_workspace()
 	local workspace_name = "default"
-	
+
 	local function create_workspace()
 		local tab_1, pane_1, window_1 = mux.spawn_window({
 			workspace = workspace_name,
@@ -105,8 +110,52 @@ function M.default_workspace()
 		tab_1:set_title("Scratchpad")
 		mux.set_active_workspace(workspace_name)
 	end
-	
+
 	switch_or_create_workspace(workspace_name, create_workspace)
+end
+
+function M.dynamic_workspace_action(slot_number)
+	return wezterm.action_callback(function(window, pane)
+		local slot_key = "slot_" .. slot_number
+		local assigned_workspace = wezterm.GLOBAL.dynamic_workspaces[slot_key]
+
+		if assigned_workspace and workspace_exists(assigned_workspace) then
+			mux.set_active_workspace(assigned_workspace)
+		else
+			local Workspace = require("workspace")
+
+			-- Get projects from sessionizer
+			local Sessionizer = require("sessionizer")
+			local projects = {}
+
+			-- Use sessionizer's internal getProjects function
+			if not wezterm.GLOBAL.projectsCache then
+				wezterm.GLOBAL.projectsCache = { timestamp = 0, projects = {} }
+			end
+
+			-- Force refresh projects if cache is empty
+			if #wezterm.GLOBAL.projectsCache.projects == 0 then
+				Sessionizer.refreshCache()
+			end
+
+			projects = wezterm.GLOBAL.projectsCache.projects
+
+			window:perform_action(
+				wezterm.action.InputSelector({
+					action = wezterm.action_callback(function(win, _, id, label)
+						if id and label then
+							wezterm.GLOBAL.dynamic_workspaces[slot_key] = id
+							Workspace.switch(win, pane, { name = id, spawn = { cwd = label } })
+						end
+					end),
+					fuzzy = true,
+					title = "Select project for CMD+" .. slot_number,
+					choices = projects,
+				}),
+				pane
+			)
+		end
+	end)
 end
 
 return M
