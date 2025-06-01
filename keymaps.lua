@@ -4,6 +4,7 @@ local Util = require("util")
 local Workspace = require("workspace")
 local sessions = require("sessions")
 local FontUtil = require("font-util")
+local TabSwitcher = require("tab-switcher")
 
 return function(wezterm, config)
 	local mux = wezterm.mux
@@ -185,6 +186,15 @@ return function(wezterm, config)
 		},
 		-- { key = "k", mods = "ALT", action = act.SwitchWorkspaceRelative(-1) },
 		-- { key = "j", mods = "ALT", action = act.SwitchWorkspaceRelative(1) },
+		
+		-- Tab Switcher
+		{
+			key = "w",
+			mods = "ALT",
+			action = wezterm.action_callback(function(window, pane)
+				TabSwitcher.switch_tab(window, pane)
+			end),
+		},
 
 		-- Tabs, Splits & Windows
 		{ key = "r", mods = "ALT", action = action.ShowTabNavigator },

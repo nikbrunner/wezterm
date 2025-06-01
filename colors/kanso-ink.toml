@@ -33,8 +33,6 @@ brights = [
   "#C5C9C7",
 ]
 
-force_reverse_video_cursor = true
-
 [colors.tab_bar]
 inactive_tab_edge = "#0f1218"
 background = "#0f1218"
