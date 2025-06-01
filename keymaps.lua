@@ -178,23 +178,20 @@ return function(wezterm, config)
 			end),
 		},
 		{
+			key = "e",
+			mods = "CMD",
+			action = wezterm.action_callback(function(window, pane)
+				TabSwitcher.switch_tab(window, pane)
+			end),
+		},
+		{
 			key = "o",
 			mods = "ALT",
 			action = wezterm.action_callback(function(window, pane)
 				Workspace.switch_to_previous(window, pane)
 			end),
 		},
-		-- { key = "k", mods = "ALT", action = act.SwitchWorkspaceRelative(-1) },
-		-- { key = "j", mods = "ALT", action = act.SwitchWorkspaceRelative(1) },
-		
 		-- Tab Switcher
-		{
-			key = "w",
-			mods = "ALT",
-			action = wezterm.action_callback(function(window, pane)
-				TabSwitcher.switch_tab(window, pane)
-			end),
-		},
 
 		-- Tabs, Splits & Windows
 		{ key = "r", mods = "ALT", action = action.ShowTabNavigator },
