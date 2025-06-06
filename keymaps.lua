@@ -5,6 +5,7 @@ local Workspace = require("workspace")
 local sessions = require("sessions")
 local FontUtil = require("font-util")
 local TabSwitcher = require("tab-switcher")
+local ColorSchemeUtil = require("colorscheme-util")
 
 return function(wezterm, config)
 	local mux = wezterm.mux
@@ -71,6 +72,7 @@ return function(wezterm, config)
 
 		-- Leader key actions
 		{ key = "f", mods = "LEADER", action = FontUtil.selector_action() },
+		{ key = "t", mods = "LEADER", action = ColorSchemeUtil.selector_action() },
 
 		-- Direct workspace access (universal)
 		{
