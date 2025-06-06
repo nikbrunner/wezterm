@@ -17,7 +17,7 @@ return function(wezterm, config)
 			-- Fallback to defaults if file doesn't exist or has errors
 			return {
 				light = "Black Atom — JPN ∷ Koyo Hiru",
-				dark = "Black Atom — JPN ∷ Koyo Yoru"
+				dark = "Black Atom — JPN ∷ Koyo Yoru",
 			}
 		end
 	end

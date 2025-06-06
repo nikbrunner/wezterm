@@ -21,5 +21,5 @@ return function(wezterm, config)
 		{ name = "Menlo", mod = "fonts.menlo" },
 	})
 
-	font_util.select(config, "JetBrains :: Maple")
+	font_util.select(config, "TX-02")
 end
