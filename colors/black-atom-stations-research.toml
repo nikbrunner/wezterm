@@ -1,1 +1,63 @@
-/Users/nbr/repos/black-atom-industries/wezterm/themes/stations/black-atom-stations-research.toml
+[metadata]
+author = "Black Atom Industries"
+name = "Black Atom — STA ∷ Research"
+
+[colors]
+foreground = "#2b3b33"
+background = "#f0f2f1"
+cursor_bg = "#66bd0f"
+cursor_border = "#66bd0f"
+cursor_fg = "#f0f2f1"
+selection_bg = "#f7faf9"
+selection_fg = "#2b3b33"
+split = "#66bd0f"
+compose_cursor = "#f472a0"
+scrollbar_thumb = "#425953"
+
+ansi = [
+  "#384b42", # black
+  "#e06c8c", # dark_red
+  "#4a9a4a", # dark_green
+  "#f2a100", # dark_yellow
+  "#5b8972", # dark_blue
+  "#887bd3", # dark_magenta
+  "#3fa569", # dark_cyan
+  "#95b8ac" # light_gray
+]
+
+brights = [
+  "#5b8972", # gray
+  "#f472a0", # red
+  "#53aa53", # green
+  "#66bd0f", # yellow
+  "#51796d", # blue
+  "#998ed9", # magenta
+  "#40bf75", # cyan
+  "#f0f2f1" # white
+]
+
+[colors.tab_bar]
+inactive_tab_edge = "#e2e8e5"
+background = "#f0f2f1"
+
+[colors.tab_bar.active_tab]
+fg_color = "#f0f2f1"
+bg_color = "#66bd0f"
+intensity = "Bold"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#f0f2f1"
+bg_color = "#d5dcd9"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#f0f2f1"
+bg_color = "#f7faf9"
+
+[colors.tab_bar.new_tab]
+fg_color = "#f0f2f1"
+bg_color = "#53aa53"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#f0f2f1"
+bg_color = "#f7faf9"
+intensity = "Bold"

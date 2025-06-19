@@ -1,1 +1,63 @@
-/Users/nbr/repos/black-atom-industries/wezterm/themes/terra/black-atom-terra-spring-day.toml
+[metadata]
+author = "Black Atom Industries"
+name = "Black Atom — TER ∷ Spring Day"
+
+[colors]
+foreground = "#385547"
+background = "#d4dcd8"
+cursor_bg = "#e49f19"
+cursor_border = "#e49f19"
+cursor_fg = "#d4dcd8"
+selection_bg = "#e2eae6"
+selection_fg = "#385547"
+split = "#e49f19"
+compose_cursor = "#dd7e5d"
+scrollbar_thumb = "#55816a"
+
+ansi = [
+  "#416353", # black
+  "#ca6d4c", # dark_red
+  "#0d8a4e", # dark_green
+  "#de7b1f", # dark_yellow
+  "#3473b2", # dark_blue
+  "#B07BAC", # dark_magenta
+  "#0e945d", # dark_cyan
+  "#b9c6bf" # light_gray
+]
+
+brights = [
+  "#62937a", # gray
+  "#dd7e5d", # red
+  "#0f9d58", # green
+  "#e49f19", # yellow
+  "#588dc1", # blue
+  "#a586c6", # magenta
+  "#10ab6a", # cyan
+  "#d4dcd8" # white
+]
+
+[colors.tab_bar]
+inactive_tab_edge = "#c7d1cc"
+background = "#d4dcd8"
+
+[colors.tab_bar.active_tab]
+fg_color = "#d4dcd8"
+bg_color = "#e49f19"
+intensity = "Bold"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#d4dcd8"
+bg_color = "#78a48e"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#d4dcd8"
+bg_color = "#b9c6bf"
+
+[colors.tab_bar.new_tab]
+fg_color = "#d4dcd8"
+bg_color = "#0f9d58"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#d4dcd8"
+bg_color = "#b9c6bf"
+intensity = "Bold"

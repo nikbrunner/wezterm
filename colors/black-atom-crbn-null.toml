@@ -1,1 +1,63 @@
-/Users/nbr/repos/black-atom-industries/wezterm/themes/crbn/black-atom-crbn-null.toml
+[metadata]
+author = "Black Atom Industries"
+name = "Black Atom — CRB ∷ NULL"
+
+[colors]
+foreground = "#becedb"
+background = "#2d3237"
+cursor_bg = "#ff964c"
+cursor_border = "#ff964c"
+cursor_fg = "#2d3237"
+selection_bg = "#444c54"
+selection_fg = "#becedb"
+split = "#ff964c"
+compose_cursor = "#f7866f"
+scrollbar_thumb = "#92a9bb"
+
+ansi = [
+  "#2d3237", # black
+  "#eb6247", # dark_red
+  "#92a9bb", # dark_green
+  "#ff8f69", # dark_yellow
+  "#92a9bb", # dark_blue
+  "#617283", # dark_magenta
+  "#617283", # dark_cyan
+  "#92a9bb" # light_gray
+]
+
+brights = [
+  "#617283", # gray
+  "#f7866f", # red
+  "#b3c1cd", # green
+  "#ff964c", # yellow
+  "#b3c1cd", # blue
+  "#7a8c9d", # magenta
+  "#7a8c9d", # cyan
+  "#becedb" # white
+]
+
+[colors.tab_bar]
+inactive_tab_edge = "#25292d"
+background = "#2d3237"
+
+[colors.tab_bar.active_tab]
+fg_color = "#2d3237"
+bg_color = "#ff964c"
+intensity = "Bold"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#2d3237"
+bg_color = "#444c54"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#2d3237"
+bg_color = "#363d43"
+
+[colors.tab_bar.new_tab]
+fg_color = "#2d3237"
+bg_color = "#b3c1cd"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#2d3237"
+bg_color = "#363d43"
+intensity = "Bold"

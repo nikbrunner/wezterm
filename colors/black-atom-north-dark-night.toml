@@ -1,1 +1,63 @@
-/Users/nbr/repos/black-atom-industries/wezterm/themes/north/black-atom-north-dark-night.toml
+[metadata]
+author = "Black Atom Industries"
+name = "Black Atom — NORTH ∷ Dark Night"
+
+[colors]
+foreground = "#D8DEE9"
+background = "#242933"
+cursor_bg = "#EBCB8B"
+cursor_border = "#EBCB8B"
+cursor_fg = "#242933"
+selection_bg = "#3B4252"
+selection_fg = "#D8DEE9"
+split = "#EBCB8B"
+compose_cursor = "#BF616A"
+scrollbar_thumb = "#88C0D0"
+
+ansi = [
+  "#242933", # black
+  "#BF616A", # dark_red
+  "#A3BE8C", # dark_green
+  "#D08770", # dark_yellow
+  "#5E81AC", # dark_blue
+  "#B48EAD", # dark_magenta
+  "#88C0D0", # dark_cyan
+  "#88C0D0" # light_gray
+]
+
+brights = [
+  "#4C566A", # gray
+  "#BF616A", # red
+  "#A3BE8C", # green
+  "#EBCB8B", # yellow
+  "#81A1C1", # blue
+  "#B48EAD", # magenta
+  "#8FBCBB", # cyan
+  "#D8DEE9" # white
+]
+
+[colors.tab_bar]
+inactive_tab_edge = "#1c1f26"
+background = "#242933"
+
+[colors.tab_bar.active_tab]
+fg_color = "#242933"
+bg_color = "#EBCB8B"
+intensity = "Bold"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#242933"
+bg_color = "#434C5E"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#242933"
+bg_color = "#2E3440"
+
+[colors.tab_bar.new_tab]
+fg_color = "#242933"
+bg_color = "#A3BE8C"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#242933"
+bg_color = "#2E3440"
+intensity = "Bold"

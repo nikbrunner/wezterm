@@ -1,1 +1,63 @@
-/Users/nbr/repos/black-atom-industries/wezterm/themes/terra/black-atom-terra-summer-night.toml
+[metadata]
+author = "Black Atom Industries"
+name = "Black Atom — TER ∷ Summer Night"
+
+[colors]
+foreground = "#bcc9db"
+background = "#1f2129"
+cursor_bg = "#dca958"
+cursor_border = "#dca958"
+cursor_fg = "#1f2129"
+selection_bg = "#282b35"
+selection_fg = "#bcc9db"
+split = "#dca958"
+compose_cursor = "#c06a59"
+scrollbar_thumb = "#91a0bc"
+
+ansi = [
+  "#23262f", # black
+  "#bf5441", # dark_red
+  "#729e60", # dark_green
+  "#f2a557", # dark_yellow
+  "#9f99e5", # dark_blue
+  "#d5a9c3", # dark_magenta
+  "#619f80", # dark_cyan
+  "#91a0bc" # light_gray
+]
+
+brights = [
+  "#47506b", # gray
+  "#c06a59", # red
+  "#85b97e", # green
+  "#dca958", # yellow
+  "#96b9e9", # blue
+  "#c4acd7", # magenta
+  "#7bb7a4", # cyan
+  "#bcc9db" # white
+]
+
+[colors.tab_bar]
+inactive_tab_edge = "#1a1c24"
+background = "#1f2129"
+
+[colors.tab_bar.active_tab]
+fg_color = "#1f2129"
+bg_color = "#dca958"
+intensity = "Bold"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#1f2129"
+bg_color = "#47506b"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#1f2129"
+bg_color = "#23262f"
+
+[colors.tab_bar.new_tab]
+fg_color = "#1f2129"
+bg_color = "#85b97e"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#1f2129"
+bg_color = "#23262f"
+intensity = "Bold"
