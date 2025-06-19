@@ -10,13 +10,8 @@ M.workspaces = {
 				cwd = os.getenv("HOME"),
 			},
 			{
-				title = "Neovim",
-				cwd = os.getenv("HOME") .. "/.config/nvim",
-				command = "nvim .\n",
-			},
-			{
-				title = "Wezterm",
-				cwd = os.getenv("HOME") .. "/.config/wezterm",
+				title = "Dots",
+				cwd = os.getenv("HOME") .. "/repos/nikbrunner/dots",
 				command = "nvim .\n",
 			},
 			{
@@ -54,3 +49,4 @@ M.workspaces = {
 }
 
 return M
+
