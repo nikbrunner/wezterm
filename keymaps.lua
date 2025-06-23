@@ -138,9 +138,13 @@ return function(wezterm, config)
 
 		-- Workspace Management
 		-- macOS direct access (optional enhancement)
-		{ key = "0", mods = "CMD", action = wezterm.action_callback(function()
-			sessions.default_workspace()
-		end) },
+		{
+			key = "0",
+			mods = "CMD",
+			action = wezterm.action_callback(function()
+				sessions.default_workspace()
+			end),
+		},
 		{
 			key = "1",
 			mods = "CMD",
