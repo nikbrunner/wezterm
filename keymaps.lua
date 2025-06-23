@@ -11,18 +11,12 @@ return function(wezterm, config)
 	local mux = wezterm.mux
 	local action = wezterm.action
 
-	-- Integration with neovim panes
 	local function isViProcess(pane)
-		-- get_foreground_process_name On Linux, macOS and Windows,
-		-- the process can be queried to determine this path. Other operating systems
-		-- (notably, FreeBSD and other unix systems) are not currently supported
-		-- return pane:get_foreground_process_name():find('n?vim') ~= nil
-		-- Use get_title as it works for multiplexed sessions too
-		return pane:get_title():find("[nv]?vim") ~= nil or pane:get_title():find("^v%s") ~= nil
+		return pane:get_foreground_process_name():find("n?vim") ~= nil
 	end
 
 	local function isLazyGitProcess(pane)
-		return pane:get_title():find("lazygit") ~= nil
+		return pane:get_foreground_process_name():find("lazygit") ~= nil
 	end
 
 	local function conditionalActivatePane(window, pane, pane_direction, vim_direction)
