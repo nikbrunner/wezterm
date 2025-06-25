@@ -8,7 +8,6 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-
 config.set_environment_variables = {
 	EDITOR = "nvim",
 	PATH = "/opt/homebrew/bin:" .. os.getenv("PATH"),
@@ -22,11 +21,11 @@ require("font")(wezterm, config)
 require("ui")(wezterm, config)
 require("keymaps")(wezterm, config)
 
-wezterm.on("gui-startup", function()
-	sessions.default_workspace()
-	sessions.private_notes_workspace()
-	sessions.work_notes_workspace()
-	mux.set_active_workspace("default")
-end)
+-- wezterm.on("gui-startup", function()
+-- 	sessions.default_workspace()
+-- 	sessions.private_notes_workspace()
+-- 	sessions.work_notes_workspace()
+-- 	mux.set_active_workspace("default")
+-- end)
 
 return config
