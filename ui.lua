@@ -83,6 +83,10 @@ return function(wezterm, config)
 
 	config.front_end = "WebGpu"
 
+	-- Cursor settings - disable blinking
+	config.default_cursor_style = "SteadyBlock"
+	config.cursor_blink_rate = 0
+
 	config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 	table.insert(config.hyperlink_rules, {
